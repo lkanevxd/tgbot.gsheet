@@ -32,57 +32,33 @@ class GoogleTable:
       phone_num_col: int = 5,
       email_col: int = 6,
       birth_date_col: int = 7,
-      column_name = None
     ) -> List[dict]:
       googlesheet_client: pygsheets.client.Client = self._get_googlesheet_client()
       wks: pygsheets.Spreadsheet = self._get_googlesheet_by_url(googlesheet_client)
 
-      if column_name:
-        find_cells = wks.find(data, matchEntireCell=True, cols=(column_name, column_name))
+      find_cells = wks.find(data, cols=(name_col, birth_date_col))
 
-        if not find_cells:
-          return []
+      if not find_cells:
+        return []
 
-        results = []
-        for cell in find_cells:
-          row = cell.row
-          name = wks.get_value((row, name_col))
-          surname = wks.get_value((row, surname_col))
-          post = wks.get_value((row, post_col))
-          birth_date = wks.get_value((row, birth_date_col))
-          tg = wks.get_value((row, tg_col))
-          phone_num = wks.get_value((row, phone_num_col))
-          results.append({
-                'name': name,
-                'surname': surname,
-                'post': post,
-                'tg': tg
-                })
-
-      else:
-        find_cells = wks.find(data, matchEntireCell=True, cols=(name_col, email_col))
-
-        if not find_cells:
-          return []
-
-        results = []
-        for cell in find_cells:
-          row = cell.row
-          name = wks.get_value((row, name_col))
-          surname = wks.get_value((row, surname_col))
-          post = wks.get_value((row, post_col))
-          email = wks.get_value((row, email_col))
-          birth_date = wks.get_value((row, birth_date_col))
-          tg = wks.get_value((row, tg_col))
-          phone_num = wks.get_value((row, phone_num_col))
-          results.append({
-                'name': name,
-                'surname': surname,
-                'post': post,
-                'email': email,
-                'birth_date': birth_date,
-                'tg': tg,
-                'phone_num': phone_num
-              })
+      results = []
+      for cell in find_cells:
+        row = cell.row
+        name = wks.get_value((row, name_col))
+        surname = wks.get_value((row, surname_col))
+        post = wks.get_value((row, post_col))
+        email = wks.get_value((row, email_col))
+        birth_date = wks.get_value((row, birth_date_col))
+        tg = wks.get_value((row, tg_col))
+        phone_num = wks.get_value((row, phone_num_col))
+        results.append({
+              'name': name,
+              'surname': surname,
+              'post': post,
+              'email': email,
+              'birth_date': birth_date,
+              'tg': tg,
+              'phone_num': phone_num
+            })
 
       return results
