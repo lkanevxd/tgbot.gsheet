@@ -1,0 +1,6 @@
+.idea/
+venv/
+
+poll-bot.log
+
+__pycache__/
