@@ -58,7 +58,7 @@ async def say_thanks(message: types.Message):
 async def birthday_reminder(message: types.Message):
   await types.ChatActions.typing()
   today = datetime.datetime.now().strftime('%d.%m')
-  results: list[dict] = bot._google_table.search_user(today, column_name=7)
+  results: list[dict] = bot._google_table.search_user(today)
   if not results:
     try:
       await message.reply('(=_=) сегодня без др...')
