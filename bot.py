@@ -46,9 +46,13 @@ async def cheers(message: types.Message):
 async def restart(message: types.Message):
   await message.answer('(n_n) все по той же схеме! введи данные человека, информацию о котором ты хочешь найти')
 
-@dp.message_handler(commands=['get_my_id'])
-async def get_id(message: types.Message):
-  await message.answer(f'(-_o) вот твой айди: <code>{message.from_user.id}</code>')
+@dp.message_handler(commands=['new_employee'])
+async def restart(message: types.Message):
+  await message.answer('(-_o) вот форма для заполнения: https://forms.gle/zze7L4U1MYZ6m41L6')
+
+# @dp.message_handler(commands=['get_my_id'])
+# async def get_id(message: types.Message):
+#   await message.answer(f'(-_o) вот твой айди: <code>{message.from_user.id}</code>')
 
 @dp.message_handler(lambda message: message.text.lower().startswith('спасибо'))
 async def say_thanks(message: types.Message):
@@ -108,11 +112,11 @@ async def user_search(message: types.Message) -> None:
     for result in results:
       try:
         await message.answer(
-          f'🧿ИМЯ🧿\n{result["name"]} {result["surname"]}\n\n'
-          f'🪬ДОЛЖНОСТЬ🪬\n{result["post"]}\n\n'
-          f'💌ПОЧТА💌\n{result["email"]}\n\n'
-          f'✈️ТЕЛЕГРАМ✈️\n{result["tg"]}\n\n'
-          f'📱НОМЕР ТЕЛЕФОНА📱\n+7{result["phone_num"][1:]}\n\n\n\n'
+          f'🧿имя🧿\n{result["name"]} {result["surname"]}\n\n'
+          f'🪬должность🪬\n{result["post"]}\n\n'
+          f'💌почта💌\n{result["email"]}\n\n'
+          f'✈️телега✈️\n{result["tg"]}\n\n'
+          f'📱номер телефона📱\n+7{result["phone_num"][1:]}\n\n\n\n'
           )
       except Exception as send_error:
         logger.debug(f"{send_error}: trouble id: {user_id}")

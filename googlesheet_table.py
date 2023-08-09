@@ -36,7 +36,7 @@ class GoogleTable:
       googlesheet_client: pygsheets.client.Client = self._get_googlesheet_client()
       wks: pygsheets.Spreadsheet = self._get_googlesheet_by_url(googlesheet_client)
 
-      find_cells = wks.find(data, cols=(name_col, birth_date_col))
+      find_cells = wks.find(data, cols=(name_col, birth_date_col), includeFormulas=True)
 
       if not find_cells:
         return []
