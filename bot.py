@@ -47,7 +47,7 @@ async def restart(message: types.Message):
   await message.answer('(n_n) все по той же схеме! введи данные человека, информацию о котором ты хочешь найти')
 
 @dp.message_handler(commands=['new_employee'])
-async def restart(message: types.Message):
+async def employee(message: types.Message):
   await message.answer('(-_o) вот форма для заполнения: https://forms.gle/zze7L4U1MYZ6m41L6')
 
 # @dp.message_handler(commands=['get_my_id'])
