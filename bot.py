@@ -81,6 +81,11 @@ async def birthday_reminder(message: types.Message):
         logger.debug(f"{send_error}: trouble id: {id}")
         return
 
+@dp.message_handler(lambda message: message.text.lower().startswith('эйчарам'))
+async def hr(message: types.Message):
+  await bot.send_message(-955995258, message["text"][7::])
+  await message.answer('(^3^) твое сообщение успешно отправлено эйчарам!')
+
 @dp.message_handler()
 async def user_search(message: types.Message) -> None:
   if message.md_text == '/dr':
