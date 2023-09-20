@@ -83,8 +83,8 @@ async def birthday_reminder(message: types.Message):
 
 @dp.message_handler(lambda message: message.text.lower().startswith('эйчарам'))
 async def hr(message: types.Message):
-  await bot.send_message(-955995258, message["text"][7::])
-  await message.answer('(^3^) твое сообщение успешно отправлено эйчарам!')
+  await bot.forward_message(-1001880569424, message.from_user.id, message["message_id"])
+  await message.answer(f'(^3^) твое сообщение успешно отправлено эйчарам! {message}')
 
 @dp.message_handler()
 async def user_search(message: types.Message) -> None:
