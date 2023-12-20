@@ -33,7 +33,7 @@ bot = ZaryaTelegramBot(
   token=config.bot_settings["TOKEN"],
   parse_mode=types.ParseMode.HTML,
   google_table=GoogleTable("creds.json",
-                          "https://docs.google.com/spreadsheets/d/1aMXNvGL4qx4mS8TrYVBPIlk-4WUUiM9bjvsce3bs-eU/edit#gid=0"),
+                          "https://docs.google.com/spreadsheets/yourspreadsheet"),
 )
 dp = Dispatcher(bot)
 
@@ -48,15 +48,15 @@ async def restart(message: types.Message):
 
 @dp.message_handler(commands=['new_employee'])
 async def employee(message: types.Message):
-  await message.answer('(-_o) вот форма для заполнения: https://forms.gle/zze7L4U1MYZ6m41L6')
+  await message.answer('(-_o) вот форма для заполнения: https://forms.gle/yourform')
 
-# @dp.message_handler(commands=['get_my_id'])
-# async def get_id(message: types.Message):
-#   await message.answer(f'(-_o) вот твой айди: <code>{message.from_user.id}</code>')
+@dp.message_handler(commands=['get_my_id'])
+async def get_id(message: types.Message):
+  await message.answer(f'(-_o) вот твой айди: <code>{message.from_user.id}</code>')
 
 @dp.message_handler(lambda message: message.text.lower().startswith('спасибо'))
 async def say_thanks(message: types.Message):
-  await message.answer_sticker(r'CAACAgIAAxkBAAJuHmSbZ_DI8XqNanwVspCKcZiPVcU6AAIQKQACxo1hSzuqU6Kksis0LwQ')
+  await message.answer_sticker(r'xd')
 
 @dp.message_handler(chat_id=config.users_data['admin_id'], commands='dr')
 async def birthday_reminder(message: types.Message):
@@ -83,14 +83,14 @@ async def birthday_reminder(message: types.Message):
 
 @dp.message_handler(lambda message: message.text.lower().startswith('эйчарам'))
 async def hr(message: types.Message):
-  await bot.forward_message(-1001880569424, message.from_user.id, message["message_id"])
+  await bot.forward_message(secreeet xd: int, message.from_user.id, message["message_id"])
   await message.answer(f'(^3^) твое сообщение успешно отправлено эйчарам!')
 
 @dp.message_handler()
 async def user_search(message: types.Message) -> None:
   if message.md_text == '/dr':
     try:
-      await message.answer_sticker(r'CAACAgIAAxkBAAJ3kWSjTAjeuSZ_HaqOJugsp8ZFFp8NAAKFLAAC92ZhS4qAuAEeI_s8LwQ')
+      await message.answer_sticker(r'xd')
     except Exception as send_error:
       logger.debug(f"{send_error}: trouble id: {message.from_user.id}")
       return
@@ -117,11 +117,11 @@ async def user_search(message: types.Message) -> None:
     for result in results:
       try:
         await message.answer(
-          f'🧿имя🧿\n{result["name"]} {result["surname"]}\n\n'
-          f'🪬должность🪬\n{result["post"]}\n\n'
-          f'💌почта💌\n{result["email"]}\n\n'
-          f'✈️телега✈️\n{result["tg"]}\n\n'
-          f'📱номер телефона📱\n+7{result["phone_num"][1:]}\n\n\n\n'
+          f'имя\n{result["name"]} {result["surname"]}\n\n'
+          f'должность\n{result["post"]}\n\n'
+          f'почта\n{result["email"]}\n\n'
+          f'телега\n{result["tg"]}\n\n'
+          f'номер телефона\n+7{result["phone_num"][1:]}\n\n\n\n'
           )
       except Exception as send_error:
         logger.debug(f"{send_error}: trouble id: {user_id}")
